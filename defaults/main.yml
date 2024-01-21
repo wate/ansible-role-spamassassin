@@ -5,3 +5,9 @@
 spamassassin_packages:
   - spamassassin
   - spamd
+
+## -----------------
+## SpamAssassinの設定
+## -----------------
+spamassassin_cfg: |
+  normalize_charset 1

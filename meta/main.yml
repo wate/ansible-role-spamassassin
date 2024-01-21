@@ -1,13 +1,12 @@
 ---
 galaxy_info:
   role_name: spamassassin
-  author: your name
-  description: your description
+  author: yoshiaki tanaka
+  description: Setup SpamAssassin(WIP)
   license: Apache
   min_ansible_version: "2.14"
   platforms:
     - name: Debian
       versions:
         - bookworm
-        - bullseye
 dependencies: []

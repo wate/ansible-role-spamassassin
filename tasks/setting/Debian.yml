@@ -1,16 +1,9 @@
 # code: language=ansible
 ---
-# - name: Create/update setting file
-#   ansible.builtin.template:
-#     src: spamassassin.conf.j2
-#     dest: /erc/spamassassin/spamassassin.conf
-#     mode: "0644"
-# - name: Add/update option setting
-#   ansible.builtin.lineinfile:
-#     path: /etc/spamassassin/spamassassin.conf
-#     regexp: ^(#\\s+)?option_name=
-#     line: option_name=option_value
-# - name: Add/update custom setting
-#   ansible.builtin.blockinfile:
-#     path: /etc/spamassassin/spamassassin.conf
-#     block: "{{ spamassassin_extra_cfg | default('') }}"
+- name: Update SpamAssassin setting
+  ansible.builtin.blockinfile:
+    path: "{{ spamassassin_config_dir }}/local.cf"
+    block: "{{ spamassassin_cfg }}"
+    marker: "# {mark} spamassassin role ANSIBLE MANAGED BLOCK"
+    mode: "0644"
+  notify: Restart spamassassin
