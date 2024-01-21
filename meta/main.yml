@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: spamassassin
   author: yoshiaki tanaka
-  description: Setup SpamAssassin(WIP)
+  description: Setup SpamAssassin(work in progress)
   license: Apache
   min_ansible_version: "2.14"
   platforms:
