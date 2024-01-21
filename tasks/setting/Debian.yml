@@ -7,3 +7,9 @@
     marker: "# {mark} spamassassin role ANSIBLE MANAGED BLOCK"
     mode: "0644"
   notify: Restart spamassassin
+- name: Update spamd option
+  ansible.builtin.lineinfile:
+    path: /etc/default/spamd
+    regexp: ^OPTIONS=
+    line: OPTIONS="{{ spamassassin_spamd_option }}"
+  notify: Restart spamassassin

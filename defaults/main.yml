@@ -4,10 +4,96 @@
 ## -----------------
 spamassassin_packages:
   - spamassassin
+  - spamc
   - spamd
+  ## 以下、協調型フィルタリングネットワークを用いたスパムキャッチャ
+  - pyzor
+  - razor
 
 ## -----------------
 ## SpamAssassinの設定
 ## -----------------
 spamassassin_cfg: |
   normalize_charset 1
+
+## -----------------
+## smapd(SpamAssassin Server)のポート番号
+## -----------------
+spamassassin_spamd_port: 783
+
+## -----------------
+## smapd(SpamAssassin Server)の設定
+## -d(--daemonize)オプションは自動で付与されます
+## -----------------
+spamassassin_spamd_option: --create-prefs --max-children 5 --helper-home-dir --port {{ spamassassin_spamd_port }}
+### ------
+### SpamAssassin Server Options:
+### ------
+#   -l, --allow-tell                  Allow learning/reporting
+#   -c, --create-prefs                Create user preferences files
+#   -C path, --configpath=path        Path for default config files
+#   --siteconfigpath=path             Path for site configs
+#   --cf='config line'                Additional line of configuration
+#   --pre='config line'               Additional line of ".pre" (prepended to configuration)
+#   -d, --daemonize                   Daemonize
+#   -h, --help                        Print usage message
+#   -i [ip_or_name[:port]], --listen=[ip_or_name[:port]] Listen on IP addr and port
+#   -p port, --port=port              Listen on specified port, may be overridden by -i
+#   -4, --ipv4-only, --ipv4           Use IPv4 where applicable, disables IPv6
+#   -6                                Use IPv6 where applicable, disables IPv4
+#   -A host,..., --allowed-ips=..,..  Restrict to IP addresses which can connect
+#   -m num, --max-children=num        Allow maximum num children
+#   --min-children=num                Allow minimum num children
+#   --min-spare=num                   Lower limit for number of spare children
+#   --max-spare=num                   Upper limit for number of spare children
+#   --max-conn-per-child=num          Maximum connections accepted by child
+#                                     before it is respawned
+#   --round-robin                     Use traditional prefork algorithm
+#   --timeout-tcp=secs                Connection timeout for client headers
+#   --timeout-child=secs              Connection timeout for message checks
+#   -q, --sql-config                  Enable SQL config (needs -x)
+#   -Q, --setuid-with-sql             Enable SQL config (needs -x,
+#                                     enables use of -H)
+#   --ldap-config                     Enable LDAP config (needs -x)
+#   --setuid-with-ldap                Enable LDAP config (needs -x,
+#                                     enables use of -H)
+#   --virtual-config-dir=dir          Enable pattern based Virtual configs
+#                                     (needs -x)
+#   -r pidfile, --pidfile             Write the process id to pidfile
+#   -s facility, --syslog=facility    Specify the syslog facility
+#   --syslog-socket=type              How to connect to syslogd
+#   --log-timestamp-fmt=fmt           strftime(3) format for timestamps, may be
+#                                     empty to disable timestamps, or 'default'
+#   -u username, --username=username  Run as username
+#   -g groupname, --groupname=groupname  Run as groupname
+#   -v, --vpopmail                    Enable vpopmail config
+#   -x, --nouser-config               Disable user config files
+#   -U username, --default-user=username  Fall back to this username if spamc user
+#                                     is not found (default: nobody)
+#   -D, --debug[=areas]               Print debugging messages (for areas)
+#   -L, --local                       Use local tests only (no DNS)
+#   -P, --paranoid                    Die upon user errors
+#   -H [dir], --helper-home-dir[=dir] Specify a different HOME directory
+#   --ssl                             Enable SSL on TCP connections
+#   --ssl-verify                      Request a client certificate and verify it
+#   --ssl-ca-file cafile              Certificate Authority certificate file
+#   --ssl-ca-path capath              Certificate Authority directory
+#   --ssl-port port                   Override --port setting for SSL connections
+#   --server-key keyfile              Specify an SSL keyfile
+#   --server-cert certfile            Specify an SSL certificate
+#   --socketpath=path                 Listen on a given UNIX domain socket
+#   --socketowner=name                Set UNIX domain socket file's owner
+#   --socketgroup=name                Set UNIX domain socket file's group
+#   --socketmode=mode                 Set UNIX domain socket file's mode
+#   --timing                          Enable timing and logging
+#   -V, --version                     Print version and exit
+#
+# The --listen option (or -i) may be specified multiple times, its syntax
+# is: [ ssl: ] [ host-name-or-IP-address ] [ : port ] or an absolute path
+# (filename) of a Unix socket. If port is omitted it defaults to --port or
+# to 783. Option --ssl implies a prefix 'ssl:'. An IPv6 address should be
+# enclosed in square brackets, e.g. [::1]:783, an IPv4 address may be but
+# need not be enclosed in square brackets. An asterisk '*' in place of a
+# hostname implies an unspecified address, ('0.0.0.0' or '::'), i.e. it
+# binds to all interfaces. An empty option value implies '*'. A default is
+# '--listen localhost', which binds to a loopback interface only.

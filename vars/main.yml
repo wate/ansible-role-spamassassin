@@ -1,4 +1,3 @@
 ---
 spamassassin_dependency_packages: []
-spamassassin_port: 783
 spamassassin_config_dir: /etc/spamassassin
