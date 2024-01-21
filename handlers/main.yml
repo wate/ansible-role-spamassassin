@@ -1,0 +1,10 @@
+# code: language=ansible
+---
+# - name: Restart spamassassin
+#   ansible.builtin.systemd:
+#     state: restarted
+#     name: spamassassin
+# - name: Reload spamassassin
+#   ansible.builtin.systemd:
+#     state: reloaded
+#     name: spamassassin

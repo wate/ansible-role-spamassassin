@@ -1,0 +1,11 @@
+---
+spamassassin_dependency_packages: []
+# spamassassin_repo_owner: owner_name
+# spamassassin_repo_name: repo_name
+
+# spamassassin_apt_key_url: https://packages.repository.com/spamassassin.gpg
+# spamassassin_apt_key_dest: /usr/share/keyrings/spamassassin.gpg
+
+spamassassin_home: /opt/spamassassin
+spamassassin_user: spamassassin
+spamassassin_group: spamassassin

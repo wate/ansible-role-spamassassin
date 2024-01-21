@@ -1,0 +1,17 @@
+# code: language=ansible
+---
+- name: Create/update systemd unit file
+  ansible.builtin.template:
+    src: spamassassin.service.j2
+    dest: /lib/systemd/system/spamassassin.service
+    mode: "0644"
+  notify: restart spamassassin
+- name: Service spamassassin is active and enabled on system startup
+  ansible.builtin.systemd:
+    name: spamassassin
+    state: started
+    enabled: true
+# - name: allow spamassassin port
+#   community.general.ufw:
+#     rule: allow
+#     port: "123456"
