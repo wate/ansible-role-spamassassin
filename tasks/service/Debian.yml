@@ -6,9 +6,9 @@
     dest: /lib/systemd/system/spamassassin.service
     mode: "0644"
   notify: restart spamassassin
-- name: Service spamassassin is active and enabled on system startup
+- name: Service SpamAssassin spam filtering daemon is active and enabled on system startup
   ansible.builtin.systemd:
-    name: spamassassin
+    name: spamd
     state: started
     enabled: true
 # - name: allow spamassassin port

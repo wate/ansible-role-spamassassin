@@ -19,11 +19,12 @@
       ansible.builtin.set_fact:
         listen_tcp_posts: "{{ ansible_facts.tcp_listen | map(attribute='port') | unique | sort | list }}"
         listen_udp_posts: "{{ ansible_facts.udp_listen | map(attribute='port') | unique | sort | list }}"
-    # ## パッケージのテスト
-    # - name: Assert package
-    #   ansible.builtin.assert:
-    #     that:
-    #       - ansible_facts.packages['package'] is defined
+    ## パッケージのテスト
+    - name: Assert package
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.packages['spamassassin'] is defined
+          - ansible_facts.packages['spamd'] is defined
     # ## ユーザーのテスト
     # - name: Test user
     #   block:
@@ -72,14 +73,14 @@
     #           - result.stat.islnk
     #           - result.stat.lnk_source == '/etc/nginx/sites-available/default'
     ## サービスのテスト
-    # - name: Assert service
-    #   ansible.builtin.assert:
-    #     that:
-    #       - ansible_facts.services['package.service'] is defined
-    #       - ansible_facts.services['package.service']['state'] == 'running'
-    #       - ansible_facts.services['package.service']['status'] == 'enabled'
-    # ## 待受ポートのテスト
-    # - name: Assert listen port
-    #   ansible.builtin.assert:
-    #     that:
-    #       - 123456 in listen_tcp_posts
+    - name: Assert service
+      ansible.builtin.assert:
+        that:
+          - ansible_facts.services['spamd.service'] is defined
+          - ansible_facts.services['spamd.service']['state'] == 'running'
+          - ansible_facts.services['spamd.service']['status'] == 'enabled'
+    ## 待受ポートのテスト
+    - name: Assert listen port
+      ansible.builtin.assert:
+        that:
+          - 783 in listen_tcp_posts

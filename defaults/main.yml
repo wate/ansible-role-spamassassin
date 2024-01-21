@@ -4,3 +4,4 @@
 ## -----------------
 spamassassin_packages:
   - spamassassin
+  - spamd
