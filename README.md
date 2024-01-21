@@ -23,6 +23,15 @@ Role Variables
 
 SpamAssassinの設定
 
+### `spamassassin_spamd_port`
+
+smapd(SpamAssassin Server)のポート番号
+
+### `spamassassin_spamd_option`
+
+smapd(SpamAssassin Server)の設定  
+-d(--daemonize)オプションは自動で付与されます
+
 Example Playbook
 --------------
 
