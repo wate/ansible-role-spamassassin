@@ -9,3 +9,5 @@ spamassassin_dependency_packages: []
 spamassassin_home: /opt/spamassassin
 spamassassin_user: spamassassin
 spamassassin_group: spamassassin
+
+spamassassin_port: 783

@@ -1,11 +1,5 @@
 # code: language=ansible
 ---
-- name: Create/update systemd unit file
-  ansible.builtin.template:
-    src: spamassassin.service.j2
-    dest: /lib/systemd/system/spamassassin.service
-    mode: "0644"
-  notify: restart spamassassin
 - name: Service SpamAssassin spam filtering daemon is active and enabled on system startup
   ansible.builtin.systemd:
     name: spamd
