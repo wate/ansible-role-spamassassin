@@ -1,7 +1,7 @@
 spamassassin
 =================
 
-Setup SpamAssassin(work in progress)
+Setup SpamAssassin
 
 OS Platform
 -----------------
