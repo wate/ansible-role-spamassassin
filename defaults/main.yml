@@ -17,12 +17,12 @@ spamassassin_cfg: |
   normalize_charset 1
 
 ## -----------------
-## smapd(SpamAssassin Server)のポート番号
+## spamd(SpamAssassin Server)のポート番号
 ## -----------------
 spamassassin_spamd_port: 783
 
 ## -----------------
-## smapd(SpamAssassin Server)の設定
+## spamd(SpamAssassin Server)の設定
 ## -d(--daemonize)オプションは自動で付与されます
 ## -----------------
 spamassassin_spamd_option: --create-prefs --max-children 5 --helper-home-dir --port {{ spamassassin_spamd_port }}
