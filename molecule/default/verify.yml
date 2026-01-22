@@ -25,6 +25,8 @@
         that:
           - ansible_facts.packages['spamassassin'] is defined
           - ansible_facts.packages['spamd'] is defined
+        fail_msg: "spamassassin packages are not installed"
+        success_msg: "spamassassin packages are installed"
     ## サービスのテスト
     - name: Assert service
       ansible.builtin.assert:
@@ -32,8 +34,12 @@
           - ansible_facts.services['spamd.service'] is defined
           - ansible_facts.services['spamd.service']['state'] == 'running'
           - ansible_facts.services['spamd.service']['status'] == 'enabled'
+        fail_msg: "spamd service is not running or not enabled"
+        success_msg: "spamd service is running and enabled"
     ## 待受ポートのテスト
     - name: Assert listen port
       ansible.builtin.assert:
         that:
           - 783 in listen_tcp_posts
+        fail_msg: "spamd is not listening on port 783"
+        success_msg: "spamd is listening on port 783"
