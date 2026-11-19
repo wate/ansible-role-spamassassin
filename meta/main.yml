@@ -1,6 +1,7 @@
 ---
 galaxy_info:
   role_name: spamassassin
+  namespace: wate
   author: yoshiaki tanaka
   description: Setup SpamAssassin
   license: Apache
